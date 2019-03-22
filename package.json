@@ -1,0 +1,13 @@
+{
+  "name": "sethret",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Christopher Fredén <me@icetan.org>",
+  "license": "Unlicense",
+  "bin": {
+    "sethret": "./index.js"
+  },
+  "dependencies": {
+    "keythereum": "^1.0.4"
+  }
+}
