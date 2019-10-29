@@ -1,5 +1,8 @@
-{ pkgs ? import (fetchTarball https://nixos.org/channels/nixos-18.09/nixexprs.tar.xz) {}
-, yarn2nix ? import (fetchTarball https://github.com/moretea/yarn2nix/archive/780e33a07fd821e09ab5b05223ddb4ca15ac663f.tar.gz) { inherit pkgs; }
+let
+  pkgs' = import ./pkgs.nix;
+in
+{ pkgs ? pkgs'.pkgs
+, yarn2nix ? pkgs'.yarn2nix
 }: rec {
   sethret = yarn2nix.mkYarnPackage {
     name = "sethret";
