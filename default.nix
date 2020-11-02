@@ -1,13 +1,10 @@
-let
-  pkgs' = import ./pkgs.nix;
-in
-{ pkgs ? pkgs'.pkgs
-, yarn2nix ? pkgs'.yarn2nix
-}: rec {
-  sethret = yarn2nix.mkYarnPackage {
-    name = "sethret";
-    src = pkgs.lib.sourceByRegex ./. [ "index.js" "package.json" ];
-    packageJson = ./package.json;
-    yarnLock = ./yarn.lock;
-  };
+{ sources ? import ./nix/sources.nix
+, pkgs ? import sources.nixpkgs {}
+}:
+
+pkgs.yarn2nix-moretea.mkYarnPackage {
+  name = "sethret";
+  src = pkgs.lib.sourceByRegex ./. [ "index.js" "package.json" ];
+  packageJson = ./package.json;
+  yarnLock = ./yarn.lock;
 }
